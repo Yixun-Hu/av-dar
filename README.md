@@ -13,8 +13,8 @@
 - Tested on Python 3.10, with Torch version '2.4.1+cu118', other version should be fine.
 - Install dependencies
 ```bash
-git clone https://github.com/HuMathe/avdar.git
-cd avdar
+git clone https://github.com/HuMathe/av-dar.git
+cd av-dar
 conda create -n av-dar python=3.10 -y
 conda activate av-dar
 pip install --index-url https://download.pytorch.org/whl/cu118 \
@@ -86,7 +86,7 @@ python evaluate.py --config_dir /path/to/your/training/run
 
 ## Repository Structure
 ```bash
-|-- avdar
+|-- av-dar
 |   |-- core/   # io/run/typing...
 |   |-- data/   # dataset loaders
 |   |-- geometry/ # beam tracer

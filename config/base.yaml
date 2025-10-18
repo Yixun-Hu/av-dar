@@ -1,0 +1,18 @@
+defaults:
+  - dataset: diff_rir
+  - train: base
+  - _self_
+
+mesh_dir: mesh
+raf_split_dir: data-split/real_acoustic_field
+raf_data_dir: /fs/nexus-projects/Audio23/baselines/avdar-old/.scratch/raf_dataset/archived
+raf_feature_dir: preprocess/image-features/raf
+haa_split_dir: data-split/hearing_anything_anywhere
+haa_data_dir: /fs/nexus-projects/Audio23/baselines/release/diffrir
+haa_feature_dir: preprocess/image-features/haa
+working_dir: .working
+device: cpu
+no_terminal: False
+state_dict_path: ''
+tensorboard: tensorboard
+seed: -1

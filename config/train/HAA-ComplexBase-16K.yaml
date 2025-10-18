@@ -1,0 +1,121 @@
+exp_name: HAA-16K
+pathspace:
+  n_base_directions: 2048
+  res: 128
+start_bounce: 0
+max_bounce: 6
+start_growing_epoch: 200
+growing_interval: 100
+save_interval: 200
+eval_interval: 200
+vis_interval: 200
+decay_loss: true
+decay_loss_lambda: 1.0
+pink_noise_supervision: false
+pink_start_epoch: 500
+lambda_pink: 0.2
+n_epochs: 4000
+no_terminal: false
+optimizer: Adam
+renderer: refl_model
+learning_rate:
+  base: 0.001
+  spec: 0.0005
+  diffuse: 0.0001
+  source: 0.001
+  source_ir: 0.001
+  late: 0.0001
+  diffuse_basis: 0.0005
+  feature_extractor: 0.0005
+batch_size: 12
+shuffle: true
+sampler_opts:
+  name: beam_tracing
+  options:
+    num_sample_directions: 16384
+    dist_thresh: 5.0
+loss_opts:
+  name: diffrir_loss
+  options:
+    nffts:
+    - 64
+    - 128
+    - 512
+    - 1024
+    - 2048
+    - 4096
+    - 8192
+    cutoff: 3000
+    eps: 1.0e-06
+clip_value: 0.1
+visualization:
+  wave_visualization: false
+  directivity_visualization: true
+  path_visualization: true
+model:
+  frequency_min: 12
+  frequency_max: 7500
+  frequency_num: 16
+  filter_length: 511
+  feat_extractor_opts:
+    name: mv_xformer_attn_only_feat_extractor
+    options:
+      out_channels: 512
+      voxels_path: ${haa_feature_dir}/complexBase/voxels.npy
+      voxel_features_path: ${haa_feature_dir}/complexBase/features.npy
+      voxel_feature_scores_path: ${haa_feature_dir}/complexBase/scores.npy
+      voxel_feature_camera_ids_path: ${haa_feature_dir}/complexBase/cam_ids.npy
+      extrinsics_path: ${haa_feature_dir}/complexBase/extrinsics.npy
+      voxel_size: 0.3
+      num_heads: 8
+      dim_key: 128
+      dim_value: 128
+      pe_order: 20
+      num_hidden_layers: 1
+      k_neighbors: 5
+      use_res_connection: false
+      dim_kqv_point: 128
+      k_neighbors_query: 5
+  src_opts:
+    name: src_para
+    options:
+      filter_length: 511
+      forced_offset: 0
+  src_ir_opts:
+    name: parameterized_directional_source
+    options:
+      sharpness: 8
+      out_dim: 16
+      n_base_directions: 128
+  spec_ir_opts:
+    name: specular_pe_mlp
+    options:
+      dim_feat: 512
+      dim_out: 16
+      n_layers: 4
+      hidden_size: 256
+      use_residual: false
+      fuse_pe: true
+      fuse_vision: true
+      pe_order: 20
+      xyz_scale:
+      - 9
+      - 14
+      - 7
+      activation: exp_softplus
+  late_ir_opts:
+    name: residual_para_direct
+    options:
+      rir_length: 32000
+  diffuse_ir_opts:
+    name: positional_encoding_acoustic_field
+    options:
+      xyz_min: 0.0
+      xyz_max: 14
+      xyz_order: 18
+      dir_order: 10
+      quat_order: 10
+      output_dim: 32000
+      n_layers: 4
+      n_features: 256
+      normalized: true

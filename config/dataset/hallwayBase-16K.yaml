@@ -1,0 +1,16 @@
+defaults:
+  - _self_
+
+name: diff_rir
+scene_name: hallwayBase
+path: ${haa_data_dir}/hallwayBase
+rir_length: 32000
+sample_rate: 16000
+split_file: data-split/hearing_anything_anywhere/hallwayBase_split.json
+options:
+  n_points: 100000
+  dim_feat: 8
+  sample_rate: 16000
+  speed_of_sound: 343.0
+  source_xyz: [0.687, 10.2452, 0.5367]
+  mesh_path:  ${mesh_dir}/hallwayBase.obj

@@ -1,0 +1,14 @@
+defaults:
+  - _self_
+
+name: real_acoustic_field
+scene_name: EmptyRoom
+path: ${raf_data_dir}/EmptyRoom
+rir_length: 5120
+sample_rate: 16000
+options:
+  n_points: 100000
+  dim_feat: 20
+  speed_of_sound: 340.0
+  split_config_file: data-split/real_acoustic_field/EmptyRoom/data-split_0.01_emptyroom.json
+  mesh_path: ${mesh_dir}/EmptyRoom.obj

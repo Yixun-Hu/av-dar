@@ -1,0 +1,16 @@
+numpy>=2.0.0
+auraloss
+hydra-core
+jaxtyping
+librosa
+matplotlib
+omegaconf
+open3d
+Pillow
+scikit_learn
+scipy
+termcolor
+terminaltables
+tqdm
+trimesh[full]
+typeguard

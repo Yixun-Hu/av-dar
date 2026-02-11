@@ -51,7 +51,18 @@ Preprocessing scripts are provided:
 preprocess/preprocess-haa.py
 preprocess/preprocess-raf.py
 ```
-> We plan to release a full automatic preprocessing pipeline.
+
+**Note on HAA visual priors:** Images are rendered from textured meshes (not real RGB images).
+
+We thank the authors of *Hearing Anything Anywhere* for sharing the textured meshes for the four scenes.
+
+| Item | Path |
+|---|---|
+| Meshes | `preprocess/haa-visual/glb/<scene>.glb` |
+| Rendered images + cameras | `preprocess/haa-visual/<scene>` |
+| Image features | `preprocess/image-features/haa/<scene>` |
+
+If you use the meshes, please cite: [Hearing Anything Anywhere](https://masonlwang.com/hearinganythinganywhere/)
 
 ## Usage
 ### Train (Hydra)

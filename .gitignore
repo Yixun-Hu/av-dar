@@ -1,3 +1,7 @@
 /.working*
 /outputs
 __pycache__
+/data
+preprocess/image-features/raf/EmptyRoom/features.npy
+preprocess/image-features/raf/FurnishedRoom/features.npy
+preprocess/image-features/raf/FurnishedRoom/features_combined.zip

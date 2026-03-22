@@ -5,10 +5,10 @@ defaults:
 
 mesh_dir: mesh
 raf_split_dir: data-split/real_acoustic_field
-raf_data_dir: /fs/nexus-projects/Audio23/baselines/avdar-old/.scratch/raf_dataset/archived
+raf_data_dir: /home/yixunhu/codespace/av-dar/data/RAF/archive
 raf_feature_dir: preprocess/image-features/raf
 haa_split_dir: data-split/hearing_anything_anywhere
-haa_data_dir: /fs/nexus-projects/Audio23/baselines/release/diffrir
+haa_data_dir: /home/yixunhu/codespace/av-dar/data/HAA
 haa_feature_dir: preprocess/image-features/haa
 working_dir: .working
 device: cpu

@@ -42,7 +42,7 @@ We use precomputed multi-view image features, and unproject them to the room's s
 preprocess/image-features/{haa,raf}/...
 ```
 For EmptyRoom and FurnishedRoom, unzip the features.npy.zip files before training:
-```
+```bash
 unzip features.npy.zip
 ```
 
@@ -51,6 +51,34 @@ Preprocessing scripts are provided:
 preprocess/preprocess-haa.py
 preprocess/preprocess-raf.py
 ```
+
+For example
+```bash
+# classroomBase
+python preprocess/preprocess-haa.py \
+    --data_root preprocess/haa-visual \
+    --output_root preprocess/image-features/haa \
+    --name classroomBase
+
+# dampenedBase
+python preprocess/preprocess-haa.py \
+    --data_root preprocess/haa-visual \
+    --output_root preprocess/image-features/haa \
+    --name dampenedBase
+
+# hallwayBase
+python preprocess/preprocess-haa.py \
+    --data_root preprocess/haa-visual \
+    --output_root preprocess/image-features/haa \
+    --name hallwayBase
+
+# complexBase
+python preprocess/preprocess-haa.py \
+    --data_root preprocess/haa-visual \
+    --output_root preprocess/image-features/haa \
+    --name complexBase
+```
+
 
 **Note on HAA visual priors:** Images are rendered from textured meshes (not real RGB images).
 
@@ -89,7 +117,7 @@ python train.py dataset=FurnishedRoom-16K-1% train=RAF-Furnished-16K-1% device=c
 > Tip: `HYDRA_FULL_ERROR=1` helps with debugging config merges.
 
 ### Evaluate
-```
+```bash
 # evaluate a trained run directory
 python evaluate.py --config_dir /path/to/your/training/run
 ```

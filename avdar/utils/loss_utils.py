@@ -13,6 +13,9 @@ from typing import List
 torch.set_default_dtype(torch.float32)
 
 def normalized(x: torch.Tensor, dim = None, eps = 1e-12):
+    """
+    Nomalize a tensor with L2 norm
+    """
     
     norm = torch.linalg.norm(x, dim=dim)
     

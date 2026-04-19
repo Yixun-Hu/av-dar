@@ -5,3 +5,5 @@ __pycache__
 preprocess/image-features/raf/EmptyRoom/features.npy
 preprocess/image-features/raf/FurnishedRoom/features.npy
 preprocess/image-features/raf/FurnishedRoom/features_combined.zip
+mesh/EmptyRoom.obj
+mesh/FurnishedRoom.obj

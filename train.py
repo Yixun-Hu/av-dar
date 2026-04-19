@@ -64,6 +64,8 @@ def main(cfg: DictConfig) -> None:
         f.write(config_yaml + "\n")
 
     build_dict = build_from_config(cfg, working_dir, cache_dir, cfg.state_dict_path != '')
+    print(f"build_dict: {build_dict}")
+    import ipdb; ipdb.set_trace()
     dataset_train = build_dict['dataset_train']
     dataset_val = build_dict['dataset_val']
     dataset_test = build_dict['dataset_test']

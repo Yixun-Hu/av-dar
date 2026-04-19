@@ -270,9 +270,40 @@ def train_loop(
         dataset_test: AcousticDataset, 
         working_dir: str, 
         out_dir: str):
-    '''
+    """
+    Run the full RIR training schedule for one experiment.
 
-    '''
+    Trains ``rir_renderer`` for ``cfg.train.n_epochs``, optionally logs to
+    TensorBoard, saves checkpoints and per-epoch evaluation metrics under
+    ``working_dir``, runs visualization on a fixed interval, and gradually
+    increases specular path order (``max_path_length``) after
+    ``start_growing_epoch``. Writes ``weight_final.pt``, ``losses.npy``, and a
+    final ``eval_losses_epoch_final.json`` when training completes.
+
+    Parameters
+    ----------
+    cfg : BaseConfig
+        Full Hydra config (dataset, train, paths, device, tensorboard, etc.).
+    rir_renderer : RirRenderer
+        Differentiable room renderer to optimize.
+    optimizer : optim.Optimizer
+        Optimizer bound to ``rir_renderer`` parameters.
+    dataset_train : AcousticDataset
+        Training split (RIR supervision).
+    dataset_test : AcousticDataset
+        Test split used for evaluation and optional visualization samples.
+    working_dir : str
+        Directory for checkpoints, logs, tensorboard, eval JSON, and images
+        (converted to ``pathlib.Path`` inside this function).
+    out_dir : str
+        Hydra run output directory (reserved for callers; not heavily used here).
+
+    Returns
+    -------
+    None
+        Side effects only: files under ``working_dir`` and console / TensorBoard
+        logging.
+    """
 
     working_dir = pathlib.Path(working_dir)
     out_dir = pathlib.Path(out_dir)
@@ -287,6 +318,7 @@ def train_loop(
     optimizer.zero_grad()
     
     max_path_length = cfg.train.start_bounce
+    # in the first epoch, max_path_length = 1
     mc_path_sampler = SpecularPathSampler.from_config(cfg.train.sampler_opts, max_path_length, dataset_test.get_mesh_path())
 
     losses = []
